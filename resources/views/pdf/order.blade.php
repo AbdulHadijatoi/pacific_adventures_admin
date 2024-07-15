@@ -74,15 +74,15 @@
         <div>
             <div style="display: flex; margin-bottom: 20px;">
                 <div style="border-left: 2px solid #ccc; padding-left: 15px; margin-right: 20px;">
-                    <p>Book Dubai Safari</p>
-                    <p>API World Tower</p>
+                    <p>Pacific Adventures</p>
+                    {{-- <p>API World Tower</p>
                     <p>232268 - Sheikh Zayed Road</p>
-                    <p>Dubai U.A.E</p>
+                    <p>Dubai U.A.E</p> --}}
                 </div>
                 <div style="border-left: 2px solid #ccc; padding-left: 15px; margin-right: 20px;">
-                    <p>Phone: +971 50 377 3786</p>
-                    <p>Email: bookings@bookdubaisafari</p>
-                    <p>Website: www.bookdubaisafari.com</p>
+                    <p>Phone: +971 58 862 7171</p>
+                    <p>Email: info@pacific-adventures.com</p>
+                    <p>Website: www.pacific-adventures.com.com</p>
                     <p>Pacific Adventures L.L.C</p>
                 </div>
                 <div style="border-left: 2px solid #ccc; padding-left: 15px;">
