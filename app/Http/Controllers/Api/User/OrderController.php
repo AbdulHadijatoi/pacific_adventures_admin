@@ -73,6 +73,16 @@ class OrderController extends Controller
             return $this->sendResponse($booking, 'Booking Updated Successfully');
         });
     }
+    
+    public function updateStatus(Request $request, $id)
+    {
+        return ExceptionHandlerHelper::tryCatch(function () use($request,$id) {
+
+            $data = array_merge($request->all());
+            $booking = $this->orderRepository->updateStatus($data,$id);
+            return $this->sendResponse($booking, 'Booking Updated Successfully');
+        });
+    }
 
     public function cancel($id)
     {

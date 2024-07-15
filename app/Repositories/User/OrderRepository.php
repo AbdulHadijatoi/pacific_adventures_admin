@@ -28,7 +28,7 @@ class OrderRepository
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'reference_id'=>$reference_id,
+            'reference_id'=>isset($data['reference_id']) ? $data['reference_id'] : $reference_id,
             'activity_name' => $data['activity_name'],
             'title' => $data['title'],
             'nationality' => $data['nationality'],
@@ -82,6 +82,16 @@ class OrderRepository
         $order=Order::findOrFail($id);
         $order->update([
             'date'=>$data['date'] ?? $order->date,
+        ]);
+        return $order;
+    }
+    
+    public function updateStatus(array $data,$id)
+    {
+        // $order=Order::findOrFail($id);
+        $order=Order::where('reference_id',$id)->first();
+        $order->update([
+            'status'=>$data['status'] ?? $order->status,
         ]);
         return $order;
     }

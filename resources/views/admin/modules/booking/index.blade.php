@@ -41,15 +41,15 @@
                                             <th>Payment Status</th>
                                             <th>Package</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Activity Name</th>
-                                            <th>Title</th>
-                                            <th>Nationality</th>
-                                            <th>Phone</th>
+                                            {{-- <th>Email</th> --}}
+                                            {{-- <th>Activity Name</th> --}}
+                                            {{-- <th>Title</th> --}}
+                                            {{-- <th>Nationality</th> --}}
+                                            {{-- <th>Phone</th> --}}
                                             <th>Date</th>
-                                            <th>Amount</th>
-                                            <th>Pickup Location</th>
-                                            <th>Note</th>
+                                            {{-- <th>Amount</th> --}}
+                                            {{-- <th>Pickup Location</th> --}}
+                                            {{-- <th>Note</th> --}}
                                             <th>Details</th>
                                         </tr>
                                     </thead>
@@ -70,14 +70,14 @@
                                                         class="btn btn-dark">Package</a></td>
                                                 <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                <td>{{ $item->activity_name }}</td>
+                                                {{-- <td>{{ $item->activity_name }}</td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->nationality }}</td>
-                                                <td>{{ $item->phone }}</td>
+                                                <td>{{ $item->phone }}</td> --}}
                                                 <td>{{ $item->date }}</td>
-                                                <td>{{ $item->total_amount }}</td>
+                                                {{-- <td>{{ $item->total_amount }}</td>
                                                 <td>{{ $item->pickup_location }}</td>
-                                                <td>{{ $item->note }}</td>
+                                                <td>{{ $item->note }}</td> --}}
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
                                                         data-target="#bookingModal" data-id="{{ $item->id }}"
