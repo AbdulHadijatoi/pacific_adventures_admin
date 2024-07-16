@@ -63,8 +63,8 @@ Route::post('/contact_us', [ContactController::class, 'contact_us'])->name('cont
 
   /* Booking Routes */
  Route::post('/booking', [OrderController::class, 'orderDetailStore']);
- Route::post('status/booking/{id}', [OrderController::class, 'update']);
- 
+ Route::post('status/booking/{id}', [OrderController::class, 'updateStatus']);
+
  //stripe payment api
 Route::post('/stripe',[StripePaymentController::class,'createPaymentIntent']);
 
