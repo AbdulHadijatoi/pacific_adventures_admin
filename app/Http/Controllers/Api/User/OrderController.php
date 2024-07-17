@@ -46,10 +46,10 @@ class OrderController extends Controller
         return ExceptionHandlerHelper::tryCatch(function () use ($request) {
             $data = array_merge($request->all());
             $order = $this->orderRepository->storeOrder($data);
-            $adminEmail = User::where('id', 1)->pluck('email')->first();
+            // $adminEmail = User::where('id', 1)->pluck('email')->first();
 
-            Mail::to($data['email'])->send(new OrderShipped($order));
-            Mail::to($adminEmail)->send(new OrderShipped($order));
+            // Mail::to($data['email'])->send(new OrderShipped($order));
+            // Mail::to($adminEmail)->send(new OrderShipped($order));
 
             return $this->sendResponse($order, 'order create successfully');
         });
@@ -79,6 +79,12 @@ class OrderController extends Controller
 
             $data = array_merge($request->all());
             $booking = $this->orderRepository->updateStatus($data,$reference_id);
+
+            $adminEmail = User::where('id', 1)->pluck('email')->first();
+
+            Mail::to($data['email'])->send(new OrderShipped($booking));
+            Mail::to($adminEmail)->send(new OrderShipped($booking));
+
             return $this->sendResponse($booking, 'Booking Updated Successfully');
         });
     }
