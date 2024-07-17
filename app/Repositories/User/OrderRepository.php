@@ -86,10 +86,8 @@ class OrderRepository
         return $order;
     }
     
-    public function updateStatus(array $data,$id)
-    {
-        // $order=Order::findOrFail($id);
-        $order=Order::where('reference_id',$id)->first();
+    public function updateStatus(array $data,$reference_id) {
+        $order=Order::where('reference_id',$reference_id)->first();
         $order->update([
             'status'=>$data['status'] ?? $order->status,
         ]);

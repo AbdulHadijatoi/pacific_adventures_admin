@@ -48,8 +48,8 @@ class OrderController extends Controller
             $order = $this->orderRepository->storeOrder($data);
             $adminEmail = User::where('id', 1)->pluck('email')->first();
 
-            Mail::to($data['email'])->send(new OrderShipped($order));
-            Mail::to($adminEmail)->send(new OrderShipped($order));
+            // Mail::to($data['email'])->send(new OrderShipped($order));
+            // Mail::to($adminEmail)->send(new OrderShipped($order));
 
             return $this->sendResponse($order, 'order create successfully');
         });
@@ -74,12 +74,11 @@ class OrderController extends Controller
         });
     }
     
-    public function updateStatus(Request $request, $id)
-    {
-        return ExceptionHandlerHelper::tryCatch(function () use($request,$id) {
+    public function updateStatus(Request $request, $reference_id) {
+        return ExceptionHandlerHelper::tryCatch(function () use($request,$reference_id) {
 
             $data = array_merge($request->all());
-            $booking = $this->orderRepository->updateStatus($data,$id);
+            $booking = $this->orderRepository->updateStatus($data,$reference_id);
             return $this->sendResponse($booking, 'Booking Updated Successfully');
         });
     }
