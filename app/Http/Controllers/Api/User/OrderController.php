@@ -48,8 +48,8 @@ class OrderController extends Controller
             $order = $this->orderRepository->storeOrder($data);
             $adminEmail = User::where('id', 1)->pluck('email')->first();
 
-            // Mail::to($data['email'])->send(new OrderShipped($order));
-            // Mail::to($adminEmail)->send(new OrderShipped($order));
+            Mail::to($data['email'])->send(new OrderShipped($order));
+            Mail::to($adminEmail)->send(new OrderShipped($order));
 
             return $this->sendResponse($order, 'order create successfully');
         });
