@@ -32,12 +32,17 @@ use App\Http\Controllers\Admin\Setting\{
     BlogPageController,
 
 };
+use App\Models\Order;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // })->name('home');
 
 /* admin login  */
+Route::get('/testpdf', function(){
+    $order = Order::find(168);
+    return view('pdf.order',compact('order'));
+});
 Route::get('/',  [AdminController::class, 'index'])->name('admin.loginPage');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('admin/order/{id}/pdf', [OrderController::class, 'generatePdf'])->name('order.pdf');
