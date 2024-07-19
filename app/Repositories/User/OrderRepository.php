@@ -2,6 +2,7 @@
 
 namespace App\Repositories\User;
 
+use App\Enums\UserRoleEnums;
 use App\Models\Order;
 
 use Illuminate\Support\Facades\Auth;
@@ -9,17 +10,37 @@ use Illuminate\Support\Carbon;
 
 use App\Models\User;
 use App\Mail\cancelBooking;
+use App\Mail\SendCredentials;
 use Illuminate\Support\Facades\Mail;
 use Str;
 use App\Models\OrderItem;
 use App\Models\Package;
+use Illuminate\Support\Facades\Hash;
+
 class OrderRepository
 {
     public function storeOrder(array $data)
     {
+        $reference_id = Str::random(7);
         if(Auth::check())
         {
             $userId=Auth::id();
+        }else{
+            $user = User::create([
+                'first_name'   => $data['first_name'],
+                'last_name'    => $data['last_name'],
+                'email'        => $data['email'],
+                'password'     => Hash::make($reference_id),
+                'original_password' => $reference_id,
+                'phone'        => $data['phone'],
+            ]);
+            if($user){
+                $user->assignRole(UserRoleEnums::USER);
+                $userId = $user->id;
+
+                //send email to user with login credentials
+                Mail::to($user->email)->send(new SendCredentials($user->email,$user->original_password));
+            }
         }
 
         // Create the order in the database
