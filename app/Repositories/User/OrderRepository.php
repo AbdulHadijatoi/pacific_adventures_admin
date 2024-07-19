@@ -26,15 +26,20 @@ class OrderRepository
         {
             $userId=Auth::id();
         }else{
-            $user = User::create([
-                'first_name'   => $data['first_name'],
-                'last_name'    => $data['last_name'],
-                'email'        => $data['email'],
-                'password'     => Hash::make($reference_id),
-                'original_password' => $reference_id,
-                'phone'        => $data['phone'],
-            ]);
-            if($user){
+            $user = User::where('email',$data['email'])->first();
+            $isNewUser = false;
+            if(!$user){
+                $user = User::create([
+                    'first_name'   => $data['first_name'],
+                    'last_name'    => $data['last_name'],
+                    'email'        => $data['email'],
+                    'password'     => Hash::make($reference_id),
+                    'original_password' => $reference_id,
+                    'phone'        => $data['phone'],
+                ]);
+                $isNewUser = true;
+            }
+            if($user && $isNewUser){
                 $user->assignRole(UserRoleEnums::USER);
                 $userId = $user->id;
 
