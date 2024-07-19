@@ -148,7 +148,7 @@
                 <td class="float-left text-bold half-width">
                     <span>Total paid amount</span>
                 </td>
-                <td class="float-right text-bold half-width text-right">1</td>
+                <td class="float-right text-bold half-width text-right">{{ $order->total_amount }}</td>
             </tr>
             
             
