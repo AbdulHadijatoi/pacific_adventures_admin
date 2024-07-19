@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Mail\SendVoucherCode;
 use App\Interfaces\Api\GiftCardInterface;
-use Mail;
 use App\Models\Activity;
+use Illuminate\Support\Facades\Mail;
 
 class GiftCardRepository implements GiftCardInterface
 {
@@ -22,7 +22,7 @@ class GiftCardRepository implements GiftCardInterface
 
     public function sendGift(array $data)
     {
-        $code = Str::random(6);
+        $code = isset($data['code']) ? isset($data['code']) : Str::random(6);
         $activityId= $data['activity_id'] ?? null;
         $validDate = Carbon::now()->addMonths(3);
         $voucher = $this->model::create([
@@ -33,11 +33,10 @@ class GiftCardRepository implements GiftCardInterface
             'valid_date'     => $validDate,
             'description'=>$data['description'] ?? null,
         ]);
-        if($voucher)
-        {
+        
+        if($voucher) {
             $activity=null;
-            if($activityId !=null)
-            {
+            if($activityId !=null) {
                 $activity=Activity::findOrFail($data['activity_id']);
             }
             else{
