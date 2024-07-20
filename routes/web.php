@@ -33,15 +33,22 @@ use App\Http\Controllers\Admin\Setting\{
 
 };
 use App\Models\Order;
-
 // Route::get('/', function () {
 //     return view('welcome');
 // })->name('home');
 
 /* admin login  */
 Route::get('/testpdf', function(){
-    $order = Order::find(168);
-    return view('pdf.order',compact('order'));
+     $order = Order::find(168);
+    
+    // Load the view with order data
+    $html = view('pdf.order', compact('order'))->render();
+
+    // Generate the PDF
+    $pdf = PDF::loadHTML($html);
+
+    // Return the PDF as a stream to view in the browser
+    return $pdf->stream('order_details.pdf');
 });
 Route::get('/',  [AdminController::class, 'index'])->name('admin.loginPage');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
