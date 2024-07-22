@@ -16,17 +16,17 @@
                                         <label for="" class="p-2">Select Booking Date</label>
                                         <div class="col-7">
                                             <input type="date" id="filterDate" name="filterDate" class="form-control"
-                                                max="{{ date('Y-m-d') }}" onchange="filterTable()">
+                                                max="{{ date('Y-m-d') }}">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 d-none">
                                     <!-- Filter by tour date -->
                                     <div class="row">
                                         <label for="" class="p-2">Select Tour Date</label>
                                         <div class="col-7">
                                             <input type="date" id="tourDateInput" name="tourDateInput"
-                                                class="form-control" onchange="filterTableByTourDate()">
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -41,15 +41,8 @@
                                             <th>Payment Status</th>
                                             <th>Package</th>
                                             <th>Name</th>
-                                            {{-- <th>Email</th> --}}
-                                            {{-- <th>Activity Name</th> --}}
-                                            {{-- <th>Title</th> --}}
-                                            {{-- <th>Nationality</th> --}}
-                                            {{-- <th>Phone</th> --}}
+                                            <th>Email</th>
                                             <th>Date</th>
-                                            {{-- <th>Amount</th> --}}
-                                            {{-- <th>Pickup Location</th> --}}
-                                            {{-- <th>Note</th> --}}
                                             <th>Details</th>
                                         </tr>
                                     </thead>
@@ -59,25 +52,16 @@
                                                 <td>{{ $item->id }}</td>
                                                 @if ($item->status === 'success')
                                                     <td class="text-success">{{ $item->status }}</td>
-                                                @endif
-                                                @if ($item->status === 'canceled')
+                                                @elseif ($item->status === 'canceled')
                                                     <td class="text-danger">{{ $item->status }}</td>
-                                                @endif
-                                                @if ($item->status === 'failed')
+                                                @elseif ($item->status === 'failed')
                                                     <td class="text-danger">{{ $item->status }}</td>
                                                 @endif
                                                 <td><a href="{{ route('admin.bookings.package', $item->id) }}"
                                                         class="btn btn-dark">Package</a></td>
                                                 <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                {{-- <td>{{ $item->activity_name }}</td>
-                                                <td>{{ $item->title }}</td>
-                                                <td>{{ $item->nationality }}</td>
-                                                <td>{{ $item->phone }}</td> --}}
                                                 <td>{{ $item->date }}</td>
-                                                {{-- <td>{{ $item->total_amount }}</td>
-                                                <td>{{ $item->pickup_location }}</td>
-                                                <td>{{ $item->note }}</td> --}}
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
                                                         data-target="#bookingModal" data-id="{{ $item->id }}"
@@ -147,58 +131,47 @@
         </div>
     </div>
 
+    <!-- Include jQuery and DataTables scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
     <script>
-        function filterTable() {
-            var filterDate = $('#filterDate').val();
-            if (!filterDate) return;
-
-            $('tbody tr').each(function() {
-                var rowDate = $(this).find('td:eq(9)').text()
-                    .trim(); // Assuming the date is in the 10th column (index 9)
-                if (filterDate === rowDate) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        }
-
-        function filterTableByTourDate() {
-            var tourDate = $('#tourDateInput').val();
-            if (!tourDate) return;
-
-            $('tbody tr').each(function() {
-                var rowDate = $(this).find('td:eq(9)').text()
-                    .trim(); // Assuming the date is in the 10th column (index 9)
-                if (tourDate === rowDate) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        }
-
         $(document).ready(function() {
+            var table = $('#dataTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+            });
+
+            // Filter by booking date
             $('#filterDate').change(function() {
-                filterTable();
+                console.log('tst');
+                table.draw();
             });
 
+            // Filter by tour date
             $('#tourDateInput').change(function() {
-                filterTableByTourDate();
+                table.draw();
             });
 
-            // Set the max date attribute for the filter date picker to today
-            var today = new Date();
-            var yyyy = today.getFullYear();
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-            var dd = String(today.getDate()).padStart(2, '0');
-            var maxDate = yyyy + '-' + mm + '-' + dd;
-            $('#filterDate').attr('max', maxDate);
+            // Custom filter function
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    var filterDate = $('#filterDate').val();
+                    var tourDate = $('#tourDateInput').val();
+                    var rowDate = data[5].trim(); // Use the index of the date column
 
-            // Set the min date attribute for the tour date picker to today
-            $('#tourDateInput').attr('min', maxDate);
+                    if (filterDate && tourDate) {
+                        return rowDate === filterDate || rowDate === tourDate;
+                    } else if (filterDate) {
+                        return rowDate === filterDate;
+                    } else if (tourDate) {
+                        return rowDate === tourDate;
+                    }
+                    return true;
+                }
+            );
 
             $('#bookingModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
