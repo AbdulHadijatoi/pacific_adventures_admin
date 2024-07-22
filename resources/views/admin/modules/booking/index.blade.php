@@ -20,7 +20,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 d-none">
+                                <div class="col-lg-6">
                                     <!-- Filter by tour date -->
                                     <div class="row">
                                         <label for="" class="p-2">Select Tour Date</label>
@@ -41,8 +41,9 @@
                                             <th>Payment Status</th>
                                             <th>Package</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Date</th>
+                                            {{-- <th>Email</th> --}}
+                                            <th>Booking Date</th>
+                                            <th>Tour Date</th>
                                             <th>Details</th>
                                         </tr>
                                     </thead>
@@ -60,7 +61,8 @@
                                                 <td><a href="{{ route('admin.bookings.package', $item->id) }}"
                                                         class="btn btn-dark">Package</a></td>
                                                 <td>{{ $item->first_name }} {{ $item->last_name }}</td>
-                                                <td>{{ $item->email }}</td>
+                                                {{-- <td>{{ $item->email }}</td> --}}
+                                                <td>{{ $item->created_at?$item->created_at->format('Y-m-d'):'' }}</td>
                                                 <td>{{ $item->date }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
@@ -146,7 +148,6 @@
 
             // Filter by booking date
             $('#filterDate').change(function() {
-                console.log('tst');
                 table.draw();
             });
 
@@ -158,16 +159,17 @@
             // Custom filter function
             $.fn.dataTable.ext.search.push(
                 function(settings, data, dataIndex) {
-                    var filterDate = $('#filterDate').val();
+                    var bookingDate = $('#filterDate').val();
                     var tourDate = $('#tourDateInput').val();
-                    var rowDate = data[5].trim(); // Use the index of the date column
+                    var bookingDateFilter = data[4].trim(); // Use the index of the date column
+                    var TourDateFilter = data[5].trim(); // Use the index of the date column
 
-                    if (filterDate && tourDate) {
-                        return rowDate === filterDate || rowDate === tourDate;
-                    } else if (filterDate) {
-                        return rowDate === filterDate;
+                    if (bookingDate && tourDate) {
+                        return bookingDateFilter == bookingDate || TourDateFilter == tourDate;
+                    } else if (bookingDate) {
+                        return bookingDateFilter == bookingDate;
                     } else if (tourDate) {
-                        return rowDate === tourDate;
+                        return TourDateFilter == tourDate;
                     }
                     return true;
                 }
