@@ -24,7 +24,7 @@
 
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Description"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description" rows="6" cols="50" id="editor5"></textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="contents[0][description]">Content Description</label>
-                                    <textarea class="form-control" name="contents[0][description]" required></textarea>
+                                    <textarea class="form-control" name="contents[0][description]" rows="6" cols="50" id="editor6" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="contents[0][image]">Content Image</label>

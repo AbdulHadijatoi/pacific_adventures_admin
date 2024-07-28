@@ -35,9 +35,7 @@
 
     ClassicEditor
         .create(document.querySelector(selector), {
-            toolbar: {
-                items: ['bulletedList']
-            },
+
             allowedContent: 'ul li',
             extraAllowedContent: '',
             removeButtons: 'NumberedList,Outdent,Indent,Blockquote',
@@ -53,6 +51,11 @@ initializeEditor('#editor1');
 initializeEditor('#editor2');
 initializeEditor('#editor3');
 initializeEditor('#editor4');
+initializeEditor('#editor5');
+initializeEditor('#editor6');
+initializeEditor('#editor7');
+initializeEditor('#editor8');
+initializeEditor('#editor9');
 
 
 </script>
