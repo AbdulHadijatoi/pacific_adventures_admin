@@ -51,7 +51,7 @@ class SitemapController extends Controller {
     
         // Define the path outside the Laravel project root directory
         // Adjust the path based on your server structure
-        $outsidePath = realpath(__DIR__ . '../../../../') . '/sitemap.xml';
+        $outsidePath = realpath(__DIR__ . '/../../../../') . '/sitemap.xml';
     
         // Save the XML content to the file
         try {
