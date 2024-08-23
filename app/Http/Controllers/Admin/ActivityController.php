@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Api\SitemapController;
 use App\Models\{Activity, Category, ActivityPicture};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -106,6 +107,8 @@ class ActivityController extends Controller
             return redirect()->back()->withErrors(['error', 'Failed to create package']);
         }
     }
+        
+        (new SitemapController())->generateSitemap();
        return redirect()->route('activities.index')->with('success','Activity added successfully');
     }
 
@@ -193,6 +196,7 @@ class ActivityController extends Controller
         }
     }
 
+    (new SitemapController())->generateSitemap();
         return redirect()->route('activities.index')->with('success','Activity Updated successfully');
     }
 

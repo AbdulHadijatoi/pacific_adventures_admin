@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Api\SitemapController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
@@ -84,7 +85,7 @@ class BlogController extends Controller
                 $blog->faqs()->create($faq);
             }
         }
-
+        (new SitemapController())->generateSitemap();
         return redirect()->route('blogs.index')->with('success', 'Blog created successfully');
     }
 
@@ -155,6 +156,8 @@ class BlogController extends Controller
                 $blog->faqs()->save($faq);
             }
         }
+
+        (new SitemapController())->generateSitemap();
 
         return redirect()->route('blogs.index')->with('success', 'Blog updated successfully');
     }
