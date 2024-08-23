@@ -115,12 +115,6 @@ class SitemapController extends Controller {
                 <priority>1.0</priority>
             </url>
             <url>
-                <loc>https://pacific-adventures.com/error</loc>
-                <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>daily</changefreq>
-                <priority>0.8</priority>
-            </url>
-            <url>
                 <loc>https://pacific-adventures.com/signup</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
                 <changefreq>daily</changefreq>
