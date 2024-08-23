@@ -109,4 +109,4 @@ Route::middleware(['auth:sanctum'])->prefix('user')->group( function () {
     Route::put('cancel/booking/{id}', [OrderController::class, 'cancel']);
 });
 
-Route::post('generate-sitemap', [SitemapController::class, 'generateSitemap']);
+Route::any('generate-sitemap', [SitemapController::class, 'generateSitemap']);
