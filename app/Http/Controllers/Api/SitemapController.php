@@ -30,7 +30,7 @@ class SitemapController extends Controller {
             <url>
                 <loc>https://pacific-adventures.com/blogs/' . $blog->slug . '</loc>
                 <lastmod>' . $blog->updated_at->format('Y-m-d') . '</lastmod>
-                <changefreq>weekly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.9</priority>
             </url>';
         }
@@ -41,7 +41,7 @@ class SitemapController extends Controller {
             <url>
                 <loc>https://pacific-adventures.com/things-to-do-in-dubai/' . $activity->slug . '</loc>
                 <lastmod>' . $activity->updated_at->format('Y-m-d') . '</lastmod>
-                <changefreq>weekly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>';
         }
@@ -60,67 +60,67 @@ class SitemapController extends Controller {
             <url>
                 <loc>https://pacific-adventures.com/</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>weekly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>1.0</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/error</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/signup</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/login</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/manage-profile</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/forget-password</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/otp-authentication</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/change-password</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/guest-details</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/about</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/invoice-details</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
@@ -132,13 +132,13 @@ class SitemapController extends Controller {
             <url>
                 <loc>https://pacific-adventures.com/desert-safari</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>weekly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/privacy-policy</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>yearly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.6</priority>
             </url>
             <url>
@@ -150,13 +150,13 @@ class SitemapController extends Controller {
             <url>
                 <loc>https://pacific-adventures.com/booking-info</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>weekly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/contact-us</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>weekly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
@@ -168,31 +168,31 @@ class SitemapController extends Controller {
             <url>
                 <loc>https://pacific-adventures.com/help</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/where-to-find-us</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/payment-details</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/admin-login</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.6</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/whish-list</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
@@ -204,31 +204,31 @@ class SitemapController extends Controller {
             <url>
                 <loc>https://pacific-adventures.com/history</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/all-booking</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/terms-&amp;-conditions</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>yearly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.6</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/view-gift</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>monthly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.7</priority>
             </url>
             <url>
                 <loc>https://pacific-adventures.com/visa-info</loc>
                 <lastmod>' . date('Y-m-d') . '</lastmod>
-                <changefreq>yearly</changefreq>
+                <changefreq>daily</changefreq>
                 <priority>0.6</priority>
             </url>
         ';
