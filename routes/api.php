@@ -24,11 +24,12 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Api\Auth\{
    ForgotPasswordController,
 };
-
+use App\Http\Controllers\Api\SitemapController;
 
 Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLink']);
 Route::post('verify-otp', [ForgotPasswordController::class, 'verifyOTP']);
 Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword']);
+
 
  /*Contact us*/
  Route::get('all/menus',[MenuController::class, 'allMenus']);
@@ -107,3 +108,5 @@ Route::middleware(['auth:sanctum'])->prefix('user')->group( function () {
     Route::put('/booking/{id}', [OrderController::class, 'update']);
     Route::put('cancel/booking/{id}', [OrderController::class, 'cancel']);
 });
+
+Route::post('generate-sitemap', [SitemapController::class, 'generateSitemap']);
