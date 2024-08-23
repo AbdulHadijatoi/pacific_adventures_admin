@@ -16,6 +16,57 @@ class SitemapController extends Controller {
 
         $blogs = Blog::get(['id','slug','updated_at']);
         $activities = Activity::get(['id','slug','updated_at']);
+    
+        // Start building the XML sitemap
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n";
+    
+        // Static routes
+        $xml .= $this->staticRoutes();
+    
+        // Dynamic blog routes
+        foreach ($blogs as $blog) {
+            $xml .= '
+            <url>
+                <loc>https://pacific-adventures.com/blogs/' . $blog->slug . '</loc>
+                <lastmod>' . $blog->updated_at->format('Y-m-d') . '</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.9</priority>
+            </url>';
+        }
+    
+        // Dynamic activities routes
+        foreach ($activities as $activity) {
+            $xml .= '
+            <url>
+                <loc>https://pacific-adventures.com/things-to-do-in-dubai/' . $activity->slug . '</loc>
+                <lastmod>' . $activity->updated_at->format('Y-m-d') . '</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.8</priority>
+            </url>';
+        }
+    
+        // Close the XML sitemap
+        $xml .= '</urlset>';
+    
+        // Define the path outside the Laravel project root directory
+        // Adjust the path based on your server structure
+        $outsidePath = realpath(__DIR__ . '/../../') . '/sitemap.xml';
+    
+        // Save the XML content to the file
+        try {
+            file_put_contents($outsidePath, $xml);
+            return response()->json(['message' => 'Sitemap generated successfully.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to generate sitemap: ' . $e->getMessage()], 500);
+        }
+    }
+    
+
+    public function generateSitemap_old() {
+
+        $blogs = Blog::get(['id','slug','updated_at']);
+        $activities = Activity::get(['id','slug','updated_at']);
 
         // Start building the XML sitemap
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
